@@ -36,7 +36,7 @@ fetchBtn.addEventListener("click", (e) => {
 function fetchFoto() {
     searchParams.q = qSearch.value;
     const searchParamsCurrent = new URLSearchParams(searchParams);
-    return fetch(`https://pixabay.com/api?${searchParamsCurrent}`).then(
+    return fetch(`https://pixabay.com/api/?${searchParamsCurrent}`).then(
         (response) => {
             if (!response.ok) {
                 throw new Error(response.status);
