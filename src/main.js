@@ -29,7 +29,7 @@ fetchBtn.addEventListener("click", (e) => {
     spinner.classList.add("loader");
     fetchFoto()
         .then((fotos) => renderFotos(fotos))
-        .catch((error) => iziToast.error({ position: 'topRight', title: "Error", message: error }))
+        .catch((error) => iziToast.error({ position: 'topRight', title: "Error", message: `${error}` }))
         .finally(() => spinner.classList.remove("loader"));
 });
 
