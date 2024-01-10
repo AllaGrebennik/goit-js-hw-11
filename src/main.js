@@ -5,10 +5,10 @@ import "izitoast/dist/css/iziToast.min.css";
 import SimpleLightbox from "simplelightbox";
 import "simplelightbox/dist/simple-lightbox.min.css";
 
-const fetchBtn = document.querySelector(".search-btn");
+const form = document.querySelector(".form");
 const qSearch = document.querySelector(".input-text");
 const gallery = document.querySelector(".gallery");
-const spinner = document.querySelector(".spinner");
+const spinnerOnOff = document.querySelector(".spinner");
 
 let searchParams = {
     key: "41702324-4ff2c897c89b5acf667452ea5",
@@ -22,15 +22,16 @@ const lightbox = new SimpleLightbox('.gallery a', {
     captionsData: 'alt',
     captionDelay: 250,
 });
-        
-fetchBtn.addEventListener("click", (e) => {
+
+form.addEventListener('submit', (e) => {
     e.preventDefault();
     gallery.innerHTML = "";
-    spinner.classList.add("loader");
+    if (!spinnerOnOff.classList.contains("loader"))
+        spinnerOnOff.classList.add("loader");
     fetchFoto()
         .then((fotos) => renderFotos(fotos))
         .catch((error) => iziToast.error({ position: 'topRight', title: "Error", message: `${error}` }))
-        .finally(() => spinner.classList.remove("loader"));
+        .finally(() => spinnerOnOff.classList.remove("loader"));
 });
 
 function fetchFoto() {
